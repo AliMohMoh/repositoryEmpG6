@@ -1,0 +1,107 @@
+﻿@using System.Globalization
+@inject IStringLocalizer<SharedResources> Sh_Localizer
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @Sh_Localizer["App"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap/dashboard.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootswatch/cerulean/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/toastr.js/toastr.css" rel="stylesheet" />
+    <link href="~/lib/limonte-sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+    {
+<link href="~/lib/bootstrap-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
+<link href="~/css/site - rtl.css" rel="stylesheet" />
+}
+
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" asp-controller="Home" asp-action="Index">@Sh_Localizer["App"]</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <partial name="_LoginPartial" />
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                                <span data-feather="home"></span>
+                                @Sh_Localizer["Home"] <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Employee" asp-action="Index">
+                                <span data-feather="layers"></span>
+                                @Sh_Localizer["Employees"]
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="City" asp-action="Index">
+                                <span data-feather="layers"></span>
+                                @Sh_Localizer["Cities"]
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Job" asp-action="Index">
+                                <span data-feather="layers"></span>
+                                @Sh_Localizer["Jobs"]
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Role" asp-action="Index">
+                                <span data-feather="layers"></span>
+                                @Sh_Localizer["Roles"]
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Department" asp-action="Index">
+                                <span data-feather="layers"></span>
+                                @Sh_Localizer["Departments"]
+                            </a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">
+                    <span data-feather="layers"></span>
+                    @Sh_Localizer["ManageRoles"]
+                </a>
+            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">
+                                    <span data-feather="layers"></span>
+                                    @Sh_Localizer["Manage Users"]
+                                </a>
+                            </li>
+}
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <partial name="_Notification" />
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/feather.min.js"></script>
+    <script src="~/lib/bootstrap/dashboard.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="~/lib/limonte-sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

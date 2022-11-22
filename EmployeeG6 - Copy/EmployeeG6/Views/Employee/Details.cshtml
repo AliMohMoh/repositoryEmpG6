@@ -1,0 +1,77 @@
+﻿@model Employee
+
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"] + " " + SharedLocalizer["Employee"];
+}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@SharedLocalizer["Employee"] @Model.Name</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-success" asp-action="Index">@SharedLocalizer["Back to List"]   <i class="bi bi-arrow-right-circle-fill"></i></a>
+        </div>
+    </div>
+</div>
+<div class="card border-dark">
+    <div class="card-header">@SharedLocalizer["Employee"]</div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.HireDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.HireDate)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Salary)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.Department != null ? Model.Department.Name : "")
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.JobId)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.Job != null ? Model.Job.Name : "")
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CityId)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.City != null ? Model.City.Name : "")
+            </dd>
+        </dl>
+    </div>
+</div>
+<partial name="_DetailsPersonalData" model="Model.PersonalData!=null?Model.PersonalData:new PersonalData() {EmployeeId=Model.Id }" />
+

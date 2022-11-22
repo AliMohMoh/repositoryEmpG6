@@ -1,0 +1,11 @@
+﻿table {
+    direction: rtl;
+}
+
+.dropdown-menu {
+    left: 0;
+    right: auto;
+    float: right;
+    text-align: left;
+}
+

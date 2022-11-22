@@ -1,0 +1,36 @@
+﻿@model Role
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] =( Model.Id > 0 ? SharedLocalizer["Edit"] : SharedLocalizer["Create"] )+" "+ SharedLocalizer["Role"];
+}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@((Model.Id > 0 ? SharedLocalizer["Edit"] : SharedLocalizer["Create"]) + " " + SharedLocalizer["Role"])</h1>
+</div>
+
+<div class="row justify-content-between">
+    <div class="col-md-4">
+        <form asp-action="CreateOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">
+                <i class="bi bi-check"></i>
+                @SharedLocalizer["Save"]
+            </button>
+            <a asp-action="Index" class="btn btn-danger mt-4">
+                <i class="bi bi-x"></i>
+                @SharedLocalizer["Cancel"]
+            </a>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
